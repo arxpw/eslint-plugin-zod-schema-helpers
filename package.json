@@ -1,5 +1,5 @@
 {
-  "name": "zod-schema-suffix",
+  "name": "eslint-plugin-zod-schema-suffix",
   "author": "Alex Stringer",
   "version": "1.0.0",
   "main": "index.js",

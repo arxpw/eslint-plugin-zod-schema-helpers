@@ -25,8 +25,8 @@ module.exports = {
       VariableDeclarator(node) {
         if (
           node.init &&
-          node.init.type === 'MemberExpression' &&
-          node.init.object.name === 'z'
+          node.init.type === 'CallExpression' &&
+          node.init.callee?.object?.name === 'z'
         ) {
           const variableName = node.id.name;
           if (!variableName.endsWith('Schema')) {
