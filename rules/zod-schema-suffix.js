@@ -9,6 +9,8 @@ module.exports = {
     },
     messages: {
       requireSchemaSuffix: 'Zod schema variable names must end with "Schema".',
+      requireFirstCharLowercase:
+        'The first letter of a schema cannot be uppercase',
     },
     schema: [], // no options
   },
@@ -19,6 +21,10 @@ module.exports = {
     // Only apply this rule to files that contain "schema" (case-insensitive)
     if (!/schema/i.test(filename)) {
       return {};
+    }
+
+    function isLowerCase(str) {
+      return str === str.toLowerCase() && str !== str.toUpperCase();
     }
 
     return {
@@ -33,6 +39,13 @@ module.exports = {
             context.report({
               node: node.id,
               messageId: 'requireSchemaSuffix',
+            });
+          }
+
+          if (!isLowerCase(variableName[0])) {
+            context.report({
+              node: node.id,
+              messageId: 'requireFirstCharLowercase',
             });
           }
         }
